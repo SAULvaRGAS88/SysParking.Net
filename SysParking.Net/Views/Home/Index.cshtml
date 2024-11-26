@@ -2,7 +2,55 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="display-4">Bem-vindo ao SysParking</h1>
+        <p class="lead">Gerencie seu estacionamento de forma simples e eficiente.</p>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Card: Estacionamento -->
+        <div class="col-md-3">
+            <div class="card shadow-sm card-background estacionamento-bg">
+                <div class="card-body text-center text-white">
+                    <h5 class="card-title text-decoration-underline">Estacionamento</h5>
+                    <p class="card-text">Gerencie os espaços e veículos no estacionamento.</p>
+                    <a href="/Estacionamentoes" class="btn btn-primary">Acessar</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: Relatórios -->
+        <div class="col-md-3">
+            <div class="card shadow-sm card-background relatorios-bg">
+                <div class="card-body text-center text-white">
+                    <h5 class="card-title text-decoration-underline">Relatórios</h5>
+                    <p class="card-text">Visualize os dados de desempenho e ocupação.</p>
+                    <a href="/Notas" class="btn btn-primary">Acessar</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: Usuários -->
+        <div class="col-md-3">
+            <div class="card shadow-sm card-background usuarios-bg">
+                <div class="card-body text-center text-white">
+                    <h5 class="card-title text-decoration-underline">Usuários</h5>
+                    <p class="card-text">Gerencie os usuários do sistema e tenha acessos mais rapidamente.</p>
+                    <a href="/Usuarios" class="btn btn-primary">Acessar</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card: Carros -->
+        <div class="col-md-3">
+            <div class="card shadow-sm card-background carros-bg">
+                <div class="card-body text-center text-white">
+                    <h5 class="card-title text-decoration-underline">Carros</h5>
+                    <p class="card-text">Registre e acompanhe os veículos cadastrados.</p>
+                    <a href="/Carroes" class="btn btn-primary">Acessar</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
