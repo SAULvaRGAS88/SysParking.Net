@@ -104,7 +104,13 @@ namespace SysParking.Net.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            returnUrl ??= Url.Content("~/Home/Index");
+
+            // Validate the returnUrl to prevent open redirect vulnerabilities
+            if (!Url.IsLocalUrl(returnUrl))
+            {
+                returnUrl = Url.Content("~/Home/Index");
+            }
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
