@@ -27,11 +27,17 @@ namespace SysParking.Net.Controllers
         }
 
         // GET: Usuarios/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
-            if (id == null || _context.Usuario == null)
+            if (string.IsNullOrEmpty(id) || _context.Usuario == null)
             {
                 return NotFound();
+            }
+
+            // Tenta converter o id de string para int
+            if (!int.TryParse(id, out int usuarioId))
+            {
+                return NotFound(); // Se a conversão falhar, retorna NotFound
             }
 
             var usuario = await _context.Usuario
@@ -93,7 +99,7 @@ namespace SysParking.Net.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Telefone,Endereco,Senha,Email,EstacionamentoId")] Usuario usuario)
         {
-            if (id != usuario.Id)
+            if (id.ToString() != usuario.Id)
             {
                 return NotFound();
             }
@@ -123,7 +129,7 @@ namespace SysParking.Net.Controllers
         }
 
         // GET: Usuarios/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string? id)
         {
             if (id == null || _context.Usuario == null)
             {
@@ -160,9 +166,10 @@ namespace SysParking.Net.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UsuarioExists(int id)
+        private bool UsuarioExists(string id)
         {
-          return (_context.Usuario?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Usuario?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
     }
 }

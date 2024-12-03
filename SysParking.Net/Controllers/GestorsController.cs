@@ -28,9 +28,9 @@ namespace SysParking.Net.Controllers
         }
 
         // GET: Gestors/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string id)
         {
-            if (id == null || _context.Gestor == null)
+            if (string.IsNullOrEmpty(id) || _context.Gestor == null)
             {
                 return NotFound();
             }
@@ -44,6 +44,7 @@ namespace SysParking.Net.Controllers
 
             return View(gestor);
         }
+
 
         // GET: Gestors/Create
         public IActionResult Create()
@@ -88,7 +89,7 @@ namespace SysParking.Net.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Telefone,senha,Email,Endereco")] Gestor gestor)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Nome,Telefone,Email,Endereco")] Gestor gestor)
         {
             if (id != gestor.Id)
             {
@@ -118,10 +119,11 @@ namespace SysParking.Net.Controllers
             return View(gestor);
         }
 
+
         // GET: Gestors/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string id)
         {
-            if (id == null || _context.Gestor == null)
+            if (string.IsNullOrEmpty(id) || _context.Gestor == null)
             {
                 return NotFound();
             }
@@ -135,6 +137,7 @@ namespace SysParking.Net.Controllers
 
             return View(gestor);
         }
+
 
         // POST: Gestors/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -155,9 +158,10 @@ namespace SysParking.Net.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool GestorExists(int id)
+        private bool GestorExists(string id)
         {
-          return (_context.Gestor?.Any(e => e.Id == id)).GetValueOrDefault();
+            return _context.Gestor?.Any(e => e.Id == id) ?? false;
         }
+
     }
 }

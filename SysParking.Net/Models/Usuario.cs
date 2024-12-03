@@ -1,8 +1,10 @@
-﻿namespace SysParking.Net.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace SysParking.Net.Models
 {
-    public class Usuario
+    public class Usuario : Gestor
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public string Nome { get; set; }
         public string Telefone { get; set; }
         public string Endereco { get; set; }
